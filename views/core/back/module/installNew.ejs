@@ -1,0 +1,74 @@
+<%- include ../commun-back/navbar.light.ejs %>
+
+<div class="">
+    <h4 style="color:forestgreen"><a href="/admin"></a>Module Installation</h4>
+
+    <form role="form" action="/admin/product/create/validation" method="POST">
+        <div class="row">
+            <div class="col-sm-12">
+                <label> <%= __('name') %>    </label>
+                           <input type="text" class="form-control" id="name" name="name"
+                                  placeholder="<%= __('Please enter your name') %>" value="">
+                <input type="hidden" name="idProduct" id="idProduct" value="<%= idProduct %>">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-12">
+                <label> <%= __('category') %> </label>
+                <select  name="related" class="form-control">            
+                    <option value="payment">Payment</option>
+                    <option value="productPage">Product Page</option>
+                    <option value="traffic">Traffic</option>
+                    <option value="shipping">Shipping</option>
+                    <option value="administration">Administration</option>
+                    <option value="customer">Customers</option>
+
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-12" style="text-align: center;align-content: center">
+                  <a class="btn btn-primary" style="margin-left: -40px;" href="/admin/module/search/"><%= __('search') %></a>
+            </div>
+        </div>
+        </form>
+
+        <br>
+    <form role="form" action="/admin/module/install/" method="POST">
+
+    <div class="row">
+            <div class="col-sm-12">
+                <label> <%= __('Found Modules') %> </label>
+                <select name="moduleToInstall" class="form-control">            
+                    <!--option value="paypal">Paypal</option-->
+                    <% if (typeof listCoreModule  == 'object') { %>
+                    <% listCoreModule.forEach(function(module){ %>
+                    <% if (module.name) { %>
+                    <option value="<%= module.name %>"><%= module.name %></option>
+                    <% }%>
+                    <% }); %>
+                    <% }%>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="col-sm-12" style="text-align: center;align-content: center">
+              <button class="btn btn-primary" style="margin-left: -40px;" type="submit"><%= __('Install') %></button>
+        </div>
+    </form>
+</div>
+
+<br>
+
+
+<!--%- include productImageUpload.ejs %-->
+
+
+
+
+
+
+
+
